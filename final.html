@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pour la plus belle demande 💍</title>
+  <link rel="stylesheet" href="final.css">
+</head>
+<body>
+  <div class="proposal-container">
+    <h1>Veux-tu m’épouser ? 💖</h1>
+    <p>J'ai trop d'inspi...😂</p>
+
+    <form id="proposal-form">
+      <input type="text" id="response" placeholder="Ta réponse ici..." required>
+      <button type="submit">Valider</button>
+    </form>
+
+    <div id="feedback" class="feedback-message"></div>
+  </div>
+
+  <script>
+  const form = document.getElementById('proposal-form');
+  const feedback = document.getElementById('feedback');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const answerInput = document.getElementById('response');
+    const answer = answerInput.value.trim().toLowerCase();
+
+    // Sauvegarde de la réponse
+    localStorage.setItem("reponse_mariage", answer);
+
+    // Sauvegarde de la date et heure actuelle
+    const now = new Date();
+    localStorage.setItem("date_reponse", now.toLocaleString("fr-FR"));
+
+    // Message personnalisé selon la réponse
+    if (answer.includes("oui") || answer.includes("yes")) {
+      feedback.innerHTML = "✨ Elle a dit OUI ! Prépare les confettis, le traiteur et les danses TikTok 💃🕺";
+    } else if (answer.includes("non")) {
+      feedback.innerHTML = "😢 Bon… je vais aller écrire un poème triste et manger des crêpes sans Nutella.";
+    } else if (answer.length === 0) {
+      feedback.innerHTML = "🧐 On tape rien ? C’est comme envoyer un SMS avec juste un emoji flamme.";
+    } else {
+      feedback.innerHTML = "😳 Réponse chelou reçue. Peut-être qu’elle parle en dialecte extraterrestre ?";
+    }
+
+    answerInput.value = "";
+  });
+</script>
+</body>
+</html>
