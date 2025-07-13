@@ -3,51 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pour la plus belle demande 💍</title>
+  <title>Joyeux anniversaire 🎉</title>
   <link rel="stylesheet" href="final.css">
 </head>
 <body>
   <div class="proposal-container">
-    <h1>Veux-tu m’épouser ? 💖</h1>
-    <p>J'ai trop d'inspi...😂</p>
+    <h1>🎉 Happy Birthday ! 🎂</h1>
+    <p>Appuie sur le bouton et laisse la magie opérer 😎</p>
 
-    <form id="proposal-form">
-      <input type="text" id="response" placeholder="Ta réponse ici..." required>
-      <button type="submit">Valider</button>
-    </form>
+    <button id="celebrate-btn">Célébrer !</button>
 
-    <div id="feedback" class="feedback-message"></div>
+    <div class="cake-rain hidden">
+      <!-- Génère 50 gâteaux avec des <span> -->
+      <!-- Tu peux en générer plus ou moins -->
+      <div id="cake-field"></div>
+      <p class="celebrate-message">🎉 Joyeux anniversaire Zouzou 🎉! </p>
+    </div>
   </div>
 
-  <script>
-  const form = document.getElementById('proposal-form');
-  const feedback = document.getElementById('feedback');
+    <script>
+      const button = document.getElementById('celebrate-btn');
+      const container = document.querySelector('.cake-rain');
+      const cakeField = document.getElementById('cake-field');
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const answerInput = document.getElementById('response');
-    const answer = answerInput.value.trim().toLowerCase();
+      button.addEventListener('click', () => {
+        container.classList.remove('hidden');
 
-    // Sauvegarde de la réponse
-    localStorage.setItem("reponse_mariage", answer);
+        // Génère 50 gâteaux 🎂
+        for (let i = 0; i < 50; i++) {
+          const cake = document.createElement('span');
+          cake.textContent = '🎂';
+          cake.style.left = Math.random() * 100 + 'vw';
+          cake.style.animationDuration = (2 + Math.random() * 3) + 's';
+          cake.style.fontSize = (1.8 + Math.random() * 1.2) + 'rem';
+          cakeField.appendChild(cake);
+        }
 
-    // Sauvegarde de la date et heure actuelle
-    const now = new Date();
-    localStorage.setItem("date_reponse", now.toLocaleString("fr-FR"));
-
-    // Message personnalisé selon la réponse
-    if (answer.includes("oui") || answer.includes("yes")) {
-      feedback.innerHTML = "✨ Elle a dit OUI ! Prépare les confettis, le traiteur et les danses TikTok 💃🕺";
-    } else if (answer.includes("non")) {
-      feedback.innerHTML = "😢 Bon… je vais aller écrire un poème triste et manger des crêpes sans Nutella.";
-    } else if (answer.length === 0) {
-      feedback.innerHTML = "🧐 On tape rien ? C’est comme envoyer un SMS avec juste un emoji flamme.";
-    } else {
-      feedback.innerHTML = "😳 Réponse chelou reçue. Peut-être qu’elle parle en dialecte extraterrestre ?";
-    }
-
-    answerInput.value = "";
-  });
-</script>
+        // Enregistre la célébration avec la date
+        const now = new Date();
+        localStorage.setItem("anniv_date", now.toLocaleString("fr-FR"));
+      });
+    </script>
 </body>
 </html>
