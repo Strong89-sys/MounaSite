@@ -12,6 +12,10 @@ body {
   overflow: hidden;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
 .proposal-container {
   background: radial-gradient(circle at top left, #fffbe6, #ffe4f0);
   border-radius: 25px;
@@ -180,3 +184,4 @@ button:hover {
     grid-row: span 1;
   }
 }
+
